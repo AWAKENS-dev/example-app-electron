@@ -17,7 +17,7 @@ document.getElementById('get-genotype-btn').addEventListener('click',function(){
     uri = path.join(addr, "/v1/genomes/1/genotypes");
     request
         .get(uri)
-        .query({locations: "20-14369"})
+        .query({locations: "chr19:45411941"})
         .end(function(err, res){
             prev = document.getElementById('get-genotype-res');
             if (prev) {

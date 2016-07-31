@@ -5,51 +5,143 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>wgx</title>
+    <title>AWAKENS</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-    <link rel="stylesheet" href="static/wgx.css" >
+    <link rel="stylesheet" href="static/css/photon.css" >
+
+    <!-- <script src="static/js/menu.js" charset="utf-8"></script> -->
   </head>
 
   <body>
-    <div class="site-wrapper">
-      <div class="site-wrapper-inner">
-        <div class="cover-container">
-          <div class="masthead clearfix">
+    <div class="window">
+
+      <div class="window-content">
+        <div class="pane-group">
+          <div class="pane pane-sm sidebar">
+            <nav class="nav-group">
+              <h5 class="nav-group-title">AWAKENS</h5>
+              <span class="nav-group-item active">
+                <span class="icon icon-drive"></span>
+                Genomes
+              </span>
+            <!-- <nav class="nav-group"> -->
+            <!--   <h5 class="nav-group-title">App</h5> -->
+            <!--   <span class="nav-group-item"> -->
+            <!--     <span class="icon icon-chart-pie"></span> -->
+            <!--     Alzheimer's disease -->
+            <!--   </span> -->
+            <!--   <span class="nav-group-item"> -->
+            <!--     <span class="icon icon-chart-pie"></span> -->
+            <!--     Coffee consumption -->
+            <!--   </span> -->
+            <!-- </nav> -->
+
           </div>
 
-          <div class="inner">
-            <div class="cover">
-              <h1 class="cover-heading">wgx</h1>
-              <p class="lead"></p>
-              <p class="lead">
-                  <button type="button" class="btn btn-default btn-lg" id="select-file">
-                    <span class="glyphicon glyphicon-hdd" aria-hidden="true"></span> Open Genome File (.vcf.gz)
-                  </button>
-              </p>
-            </div>
+          <div class="pane">
+            <table class="table-striped">
+              <thead>
+                <tr>
+                  <th width="10%">ID</th>
+                  <th>File</th>
+                  <th>Sample Name</th>
+                  <th>Sample Index</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <!-- <tr> -->
+                <!--   <td>1</td> -->
+                <!--   <td>test/data/test.vcf41.vcf.gz</td> -->
+                <!--   <td>NA00001</td> -->
+                <!--   <td>0</td> -->
+                <!-- </tr> -->
+                <!-- <tr> -->
+                <!--   <td>2</td> -->
+                <!--   <td>test/data/test.vcf41.vcf.gz</td> -->
+                <!--   <td>NA00002</td> -->
+                <!--   <td>1</td> -->
+                <!-- </tr> -->
+                <!-- <tr> -->
+                <!--   <td>3</td> -->
+                <!--   <td>test/data/test.vcf41.vcf.gz</td> -->
+                <!--   <td>NA00003</td> -->
+                <!--   <td>2</td> -->
+                <!-- </tr> -->
+              </tbody>
+            </table>
 
-            <div class="main">
-              <h2>API</h2>
-              <h4>Genotypes</h4>
-              <div class="well well-sm" id="get-genotype-code">GET /v1/genomes/1/genotypes?locations=20-14369</div>
-              <button type="button" class="btn btn-info" id="get-genotype-btn">Go</button>
-              <hr>
-              <h4>Genomes</h4>
-              <div class="well well-sm">GET /v1/genomes/1</div>
-              <button type="button" class="btn btn-info disabled" id="get-genotype">Go</button>
-              <hr>
+            <footer class="toolbar toolbar-footer">
+              <div class="toolbar-actions">
+                <button class="btn btn-default pull-right" id="select-file">
+                  <span class="icon icon-plus"></span>
+                </button>
+              </div>
+            </footer>
 
-            </div>
-          </div>
-
-          <div class="mastfoot">
-            <div class="inner">
-            </div>
           </div>
         </div>
       </div>
+
     </div>
 
     <script>

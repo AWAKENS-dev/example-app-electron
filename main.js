@@ -16,7 +16,12 @@ var addr = "localhost:1323";
 
 function createWindow() {
     // Create the browser window.
-    win = new BrowserWindow({width: 800, height: 600});
+    win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        'accept-first-mouse': true,
+        'title-bar-style': 'hidden'
+    });
 
     // and load the index.html of the app.
     win.loadURL(`file://${__dirname}/index.html`);
@@ -60,7 +65,7 @@ function createWindow() {
 
     // TODO: close safely
     var child_process = require('child_process')
-    runserver = child_process.execFile(path.join(__dirname, 'script', 'wgx'), ['runserver', addr], {cwd: __dirname});
+    runserver = child_process.execFile(path.join(__dirname, 'awtk'), ['runserver', addr], {cwd: __dirname});
     log.info(runserver);
 
     runserver.stdout.on('data', function (data) {

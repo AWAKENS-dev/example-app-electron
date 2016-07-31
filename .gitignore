@@ -9,10 +9,11 @@ node_modules/
 npm-debug.log*
 
 # executable
-wgx
-wgx-darwin-x64/
+awtk
+awtk-darwin-x64/
 
 #
 tmp/
 data/
 *.sqlite3
+photon-*
