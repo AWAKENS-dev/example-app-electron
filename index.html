@@ -8,8 +8,7 @@
     <title>AWAKENS</title>
 
     <link rel="stylesheet" href="static/css/photon.css" >
-
-    <!-- <script src="static/js/menu.js" charset="utf-8"></script> -->
+    <link rel="stylesheet" href="static/css/app.css" >
   </head>
 
   <body>
@@ -20,25 +19,24 @@
           <div class="pane pane-sm sidebar">
             <nav class="nav-group">
               <h5 class="nav-group-title">AWAKENS</h5>
-              <span class="nav-group-item active">
+              <span class="nav-group-item active crrent" data-pane="pane-1">
                 <span class="icon icon-drive"></span>
                 Genomes
               </span>
-            <!-- <nav class="nav-group"> -->
-            <!--   <h5 class="nav-group-title">App</h5> -->
-            <!--   <span class="nav-group-item"> -->
-            <!--     <span class="icon icon-chart-pie"></span> -->
-            <!--     Alzheimer's disease -->
-            <!--   </span> -->
-            <!--   <span class="nav-group-item"> -->
-            <!--     <span class="icon icon-chart-pie"></span> -->
-            <!--     Coffee consumption -->
-            <!--   </span> -->
-            <!-- </nav> -->
-
+            <nav class="nav-group">
+              <h5 class="nav-group-title">App</h5>
+              <span class="nav-group-item" data-pane="pane-2">
+                <span class="icon icon-chart-pie"></span>
+                Coffee consumption
+              </span>
+              <!-- <span class="nav-group-item"> -->
+              <!--   <span class="icon icon-chart-pie"></span> -->
+              <!--   Alzheimer's disease -->
+              <!-- </span> -->
+            </nav>
           </div>
 
-          <div class="pane">
+          <div id="pane-1" class="pane pane-content current">
             <table class="table-striped">
               <thead>
                 <tr>
@@ -104,10 +102,12 @@
                   <td></td>
                 </tr>
                 <tr>
-                  <td>&nbsp;</td>
+                  <td>
+                  </td>
                   <td></td>
                   <td></td>
-                  <td></td>
+                  <td>
+                  </td>
                 </tr>
                 <!-- <tr> -->
                 <!--   <td>1</td> -->
@@ -132,13 +132,17 @@
 
             <footer class="toolbar toolbar-footer">
               <div class="toolbar-actions">
-                <button class="btn btn-default pull-right" id="select-file">
-                  <span class="icon icon-plus"></span>
+                <button class="btn btn-default" id="select-file">
+                  +
                 </button>
               </div>
             </footer>
-
           </div>
+
+          <div id="pane-2" class="pane pane-content">
+            App pane
+          </div>
+
         </div>
       </div>
 

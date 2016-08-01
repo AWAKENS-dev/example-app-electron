@@ -1,0 +1,7 @@
+.pane-content{
+	display: none;
+}
+
+.pane-content.current{
+	display: initial;
+}
