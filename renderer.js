@@ -3,6 +3,7 @@
 // All of the Node.js APIs are available in this process.
 
 const {dialog} = require('electron').remote;
+var Vue = require('vue');
 var request = require('superagent');
 var path = require("path");
 
@@ -30,6 +31,19 @@ for (var nav of document.getElementsByClassName('nav-group-item')) {
     })
 };
 
+//
+new Vue({
+  el: '#genomes',
+  data: {
+    genomes: [
+        { id: "1", filePath: "test/data/test.vcf41.vcf.gz", sampleName: "NA00001", sampleIndex: "0" },
+        { id: "2", filePath: "test/data/test.vcf41.vcf.gz", sampleName: "NA00002", sampleIndex: "1" },
+        { id: "3", filePath: "test/data/test.vcf41.vcf.gz", sampleName: "NA00003", sampleIndex: "2" },
+    ]
+  }
+})
+
+//
 // document.getElementById('get-genotype-btn').addEventListener('click',function(){
 //     uri = path.join(addr, "/v1/genomes/1/genotypes");
 //     request

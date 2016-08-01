@@ -46,87 +46,13 @@
                   <th>Sample Index</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+              <tbody id="genomes">
+                <tr v-for="genome in genomes">
+                  <td>{{ genome.id }}</td>
+                  <td>{{ genome.filePath }}</td>
+                  <td>{{ genome.sampleName }}</td>
+                  <td>{{ genome.sampleIndex }}</td>
                 </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>&nbsp;</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>
-                  </td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                  </td>
-                </tr>
-                <!-- <tr> -->
-                <!--   <td>1</td> -->
-                <!--   <td>test/data/test.vcf41.vcf.gz</td> -->
-                <!--   <td>NA00001</td> -->
-                <!--   <td>0</td> -->
-                <!-- </tr> -->
-                <!-- <tr> -->
-                <!--   <td>2</td> -->
-                <!--   <td>test/data/test.vcf41.vcf.gz</td> -->
-                <!--   <td>NA00002</td> -->
-                <!--   <td>1</td> -->
-                <!-- </tr> -->
-                <!-- <tr> -->
-                <!--   <td>3</td> -->
-                <!--   <td>test/data/test.vcf41.vcf.gz</td> -->
-                <!--   <td>NA00003</td> -->
-                <!--   <td>2</td> -->
-                <!-- </tr> -->
               </tbody>
             </table>
 
