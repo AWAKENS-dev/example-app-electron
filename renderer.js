@@ -30,18 +30,17 @@ for (var nav of document.getElementsByClassName('nav-group-item')) {
 var vm = new Vue({
     el: '#genomes',
     data: {
-        genomes: [
-        ]
+        genomes: []
     }
 });
 
 // Fetch from /genomes
 function fetchGenomeData(vm) {
-    uri = path.join(addr, "/v1/genomes/1"); // TODO: replace to /v1/genomes
+    uri = path.join(addr, "/v1/genomes");
     request
         .get(uri)
         .end(function(err, res){
-            vm.genomes = [res.body]; // TODO:
+            vm.genomes = res.body;
         });
 }
 // Init
