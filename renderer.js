@@ -10,10 +10,6 @@ var path = require("path");
 // TODO: DRY
 var addr = "localhost:1323";
 
-document.getElementById('select-file').addEventListener('click',function(){
-    console.log(dialog.showOpenDialog({properties: ['openFile', 'openDirectory', 'multiSelections']}));
-});
-
 // Switch pane by nav
 for (var nav of document.getElementsByClassName('nav-group-item')) {
     nav.addEventListener('click',function(){
@@ -31,17 +27,46 @@ for (var nav of document.getElementsByClassName('nav-group-item')) {
     })
 };
 
-//
-new Vue({
-  el: '#genomes',
-  data: {
-    genomes: [
-        { id: "1", filePath: "test/data/test.vcf41.vcf.gz", sampleName: "NA00001", sampleIndex: "0" },
-        { id: "2", filePath: "test/data/test.vcf41.vcf.gz", sampleName: "NA00002", sampleIndex: "1" },
-        { id: "3", filePath: "test/data/test.vcf41.vcf.gz", sampleName: "NA00003", sampleIndex: "2" },
-    ]
-  }
-})
+var vm = new Vue({
+    el: '#genomes',
+    data: {
+        genomes: [
+        ]
+    }
+});
+
+// Fetch from /genomes
+function fetchGenomeData(vm) {
+    uri = path.join(addr, "/v1/genomes/1"); // TODO: replace to /v1/genomes
+    request
+        .get(uri)
+        .end(function(err, res){
+            vm.genomes = [res.body]; // TODO:
+        });
+}
+// Init
+fetchGenomeData(vm);
+
+// Register vcf to /genomes
+document.getElementById('select-file').addEventListener('click',function(){
+    var filePaths = dialog.showOpenDialog({
+        properties: ['openFile', 'openDirectory'],
+        filters: [
+            {name: 'gzipped VCF', extensions: ['gz']},  // TODO: .vcf.gz
+        ],
+    });
+
+    // TODO: add validation
+    var filePath = filePaths[0]
+
+    uri = path.join(addr, "/v1/genomes");
+    request
+        .post(uri)
+        .send({filePath: filePath})
+        .end(function(err, res){
+            fetchGenomeData(vm);
+        });
+});
 
 //
 // document.getElementById('get-genotype-btn').addEventListener('click',function(){
