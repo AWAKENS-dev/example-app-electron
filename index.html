@@ -26,8 +26,12 @@
             <nav class="nav-group">
               <h5 class="nav-group-title">App</h5>
               <span class="nav-group-item" data-pane="pane-2">
+                <span class="icon icon-search"></span>
+                Genotype Viewer
+              </span>
+              <span class="nav-group-item" data-pane="pane-3">
                 <span class="icon icon-chart-pie"></span>
-                Coffee consumption
+                Coffee Consumption
               </span>
               <!-- <span class="nav-group-item"> -->
               <!--   <span class="icon icon-chart-pie"></span> -->
@@ -67,12 +71,62 @@
 
           <div id="pane-2" class="pane pane-content">
             <div class="padded">
-              <form>
-                <select class="form-control">
-                  <option>Genome ID 1</option>
-                  <option>Genome ID 2</option>
-                  <option>Genome ID 3</option>
+              <form id="genome_choices_viewer">
+                <select class="form-control" v-model="selected">
+                  <option v-for="option in options" v-bind:value="option.value">
+                    {{ option.text }}
+                  </option>
                 </select>
+                <!-- <span>Selected: {{ selected }}</span> -->
+              </form>
+            </div>
+
+            <div id="genotype_query">
+              <ul class="list-group">
+                <li class="list-group-header">
+                  <h4>Genotype Viewer</h4>
+                </li>
+                <li class="list-group-header">
+                  <input v-model="location" v-on:keyup.enter="fetch" class="form-control" type="text" placeholder="20:17330">
+                </li>
+              </ul>
+              <div class="padded">
+
+                <table class="table-striped">
+                  <thead>
+                    <tr>
+                      <th>Sample Name</th>
+                      <th>Chrom</th>
+                      <th>Position</th>
+                      <th>SNP ID</th>
+                      <th>Genotype</th>
+                      <th>Alleles</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{ genotype.sampleName }}</td>
+                      <td>{{ genotype.genotypes[0].chrom }}</td>
+                      <td>{{ genotype.genotypes[0].position }}</td>
+                      <td>{{ genotype.genotypes[0].snpId }}</td>
+                      <td>{{ genotype.genotypes[0].genotype }}</td>
+                      <td>{{ genotype.genotypes[0].alleles }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div id="pane-3" class="pane pane-content">
+            <div class="padded">
+              <form id="genome_choices_coffee">
+                <select class="form-control" v-model="selected">
+                  <option v-for="option in options" v-bind:value="option.value">
+                    {{ option.text }}
+                  </option>
+                </select>
+                <!-- <span>Selected: {{ selected }}</span> -->
               </form>
             </div>
 
@@ -102,7 +156,6 @@
                 </div>
               </li>
             </ul>
-
           </div>
 
         </div>

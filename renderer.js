@@ -27,6 +27,7 @@ for (var nav of document.getElementsByClassName('nav-group-item')) {
     })
 };
 
+// Fetch from /genomes
 var vm = new Vue({
     el: '#genomes',
     data: {
@@ -34,7 +35,6 @@ var vm = new Vue({
     }
 });
 
-// Fetch from /genomes
 function fetchGenomeData(vm) {
     uri = path.join(addr, "/v1/genomes");
     request
@@ -43,8 +43,39 @@ function fetchGenomeData(vm) {
             vm.genomes = res.body;
         });
 }
-// Init
+
 fetchGenomeData(vm);
+
+// TODO: DRY
+var vmGenomeChoicesCoffee = new Vue({
+    el: '#genome_choices_coffee',
+    data: {
+        selected: '1',
+        options: []
+    }
+});
+var vmGenomeChoicesViewer = new Vue({
+    el: '#genome_choices_viewer',
+    data: {
+        selected: '1',
+        options: []
+    }
+});
+
+function fetchGenomeChoices(vm) {
+    uri = path.join(addr, "/v1/genomes");
+    request
+        .get(uri)
+        .end(function(err, res){
+            var options = [];
+            for (var genome of res.body) {
+                options.push({ text:genome.sampleName , value:genome.id })
+            }
+            vm.options = options;
+        });
+}
+fetchGenomeChoices(vmGenomeChoicesCoffee);
+fetchGenomeChoices(vmGenomeChoicesViewer);
 
 // Register vcf to /genomes
 document.getElementById('select-file').addEventListener('click',function(){
@@ -64,26 +95,41 @@ document.getElementById('select-file').addEventListener('click',function(){
         .send({filePath: filePath})
         .end(function(err, res){
             fetchGenomeData(vm);
+            fetchGenomeChoices(vmGenomeChoicesCoffee);
+            fetchGenomeChoices(vmGenomeChoicesViewer);
         });
 });
 
-//
-// document.getElementById('get-genotype-btn').addEventListener('click',function(){
-//     uri = path.join(addr, "/v1/genomes/1/genotypes");
-//     request
-//         .get(uri)
-//         .query({locations: "chr19:45411941"})
-//         .end(function(err, res){
-//             prev = document.getElementById('get-genotype-res');
-//             if (prev) {
-//                 prev.parentNode.removeChild(prev);
-//             }
+// Fetch from /genotypes
+new Vue({
+    el: '#genotype_query',
+    data: {
+        location: '',
+        genotype: {"sampleName":"NA00001",
+                   "genotypes":[{"chrom":"20",
+                                 "position":14370,
+                                 "snpId":"rs6054257",
+                                 "genotype":["G","G"],
+                                 "alleles":["G","A"]}]}
+    },
+    methods: {
+        fetch: function () {
+            var text = this.location.trim()
+            if (text) {
+                fetchGenotype(this, vmGenomeChoicesViewer.selected.toString(), text);
+                this.location = '';
+            }
+        }
+    }
+})
 
-//             var div = document.createElement('div');
-//             div.className = 'well';
-//             div.id = 'get-genotype-res';
-//             div.textContent = res.text;
-//             node = document.getElementById('get-genotype-code');
-//             node.parentNode.insertBefore(div, node.nextSibling);
-//         });
-// });
+function fetchGenotype(vm, genomeId, location){
+    uri = path.join(addr, "v1", "genomes", genomeId, "genotypes");
+    console.log(uri);
+    var response = request
+        .get(uri)
+        .query({locations: location})
+        .end(function(err, res){
+            vm.genotype = res.body;
+        });
+};
