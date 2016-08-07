@@ -105,12 +105,12 @@ new Vue({
     el: '#genotype_query',
     data: {
         location: '',
-        genotype: {"sampleName":"NA00001",
-                   "genotypes":[{"chrom":"20",
-                                 "position":14370,
-                                 "snpId":"rs6054257",
-                                 "genotype":["G","G"],
-                                 "alleles":["G","A"]}]}
+        genotype: {"sampleName": "",
+                   "genotypes":[{"chrom": "",
+                                 "position": null,
+                                 "snpId": "",
+                                 "genotype": [""],
+                                 "alleles": [""]}]}
     },
     methods: {
         fetch: function () {
