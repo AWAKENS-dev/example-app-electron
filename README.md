@@ -18,7 +18,7 @@ $ electron .
 Build
 
 ```
-$ VERSION=0.0.1; electron-packager . --platform=darwin --arch=x64 --version=$(npm view electron-prebuilt version) --icon=icon/app.icns --overwrite --app-version ${VERSION}
+$ electron-packager . --platform=darwin --arch=x64 --version=$(npm view electron-prebuilt version) --icon=icon/app.icns --overwrite
 ```
 
 Logs
