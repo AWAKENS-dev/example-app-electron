@@ -1,11 +1,13 @@
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
+var path = require("path");
 
 const {dialog} = require('electron').remote;
 var Vue = require('vue');
 var request = require('superagent');
-var path = require("path");
+
+require(path.join(__dirname, 'menu.js'));
 
 // TODO: DRY
 var addr = "localhost:1323";
