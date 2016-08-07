@@ -27,7 +27,7 @@ function createWindow() {
     win.loadURL(`file://${__dirname}/index.html`);
 
                 // Open the DevTools.
-                win.webContents.openDevTools();
+                // win.webContents.openDevTools();
 
                 // Emitted when the window is closed.
                 win.on('closed', () => {
@@ -63,24 +63,35 @@ function createWindow() {
     // In this file you can include the rest of your app's specific main process
     // code. You can also put them in separate files and require them here.
 
-    // TODO: close safely
     var child_process = require('child_process')
-    runserver = child_process.execFile(path.join(__dirname, 'awtk'), ['runserver', addr], {cwd: __dirname});
-    log.info(runserver);
+    var server_process = child_process.execFile(path.join(__dirname, 'awtk'), ['runserver', addr], {cwd: __dirname});
+    log.info('server process cmd: ' + server_process.spawnargs.join(' '));
+    log.info('server process pid: ' + server_process.pid);
 
-    runserver.stdout.on('data', function (data) {
-        log.info('stdout: ' + data);
+    server_process.stdout.on('data', function (data) {
+        log.info('[awtk] stdout: ' + data.trim());
     });
 
-    runserver.stderr.on('data', function (data) {
-        log.info('stderr: ' + data);
+    server_process.stderr.on('data', function (data) {
+        log.info('[awtk] stderr: ' + data.trim());
     });
 
-    runserver.on('close', function (code) {
-        log.info('child process exited with code ' + code);
+    // server_process.on('exit', function (code) {
+    // });
+
+    server_process.on('close', function (code, signal) {
+        log.info('server process closed with code: ' + code);
+        log.info('server process closed with signal: ' + signal);
     });
 
     //
     process.on('uncaughtException', function (err) {
-        log.error('Caught exception: ' + err);
+        log.error('caught exception: ' + err);
     });
+
+    app.on('will-quit', function () {
+        server_process.kill('SIGINT');
+    });
+
+    // app.on('quit', function () {
+    // });
