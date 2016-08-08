@@ -92,16 +92,16 @@ if (process.platform === 'darwin') {
       {
         type: 'separator'
       },
-      {
-          label: 'Preferences...',
-          accelerator: process.platform === 'darwin' ? 'Command+,' : '',
-          click: function () {
-              ipcRenderer.send('toggle-prefs');
-          }
-      },
-      {
-        type: 'separator'
-      },
+      // {
+      //     label: 'Preferences...',
+      //     accelerator: process.platform === 'darwin' ? 'Command+,' : '',
+      //     click: function () {
+      //         ipcRenderer.send('toggle-prefs');
+      //     }
+      // },
+      // {
+      //   type: 'separator'
+      // },
       {
         role: 'services',
         submenu: []
