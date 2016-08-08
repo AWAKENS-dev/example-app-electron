@@ -1,4 +1,5 @@
 const {Menu} = require('electron').remote;
+const {ipcRenderer} = require('electron');
 
 const template = [
   {
@@ -87,6 +88,16 @@ if (process.platform === 'darwin') {
     submenu: [
       {
         role: 'about'
+      },
+      {
+        type: 'separator'
+      },
+      {
+          label: 'Preferences...',
+          accelerator: process.platform === 'darwin' ? 'Command+,' : '',
+          click: function () {
+              ipcRenderer.send('toggle-prefs');
+          }
       },
       {
         type: 'separator'
